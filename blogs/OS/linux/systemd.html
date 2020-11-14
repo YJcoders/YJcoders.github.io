@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>守护系统 systemd | 甲乙丙遇见丁</title>
+    <meta name="generator" content="VuePress 1.5.2">
+    <link rel="icon" href="/favicon.ico">
+    <meta name="description" content="js、css、vue、react、node、webpack记录总结">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <link rel="preload" href="/assets/css/0.styles.576c9d73.css" as="style"><link rel="preload" href="/assets/js/app.feb61cd3.js" as="script"><link rel="preload" href="/assets/js/3.445022ba.js" as="script"><link rel="preload" href="/assets/js/1.d2dffd9e.js" as="script"><link rel="preload" href="/assets/js/120.72d39615.js" as="script"><link rel="prefetch" href="/assets/js/10.eaaa9a3a.js"><link rel="prefetch" href="/assets/js/100.ad7c9d27.js"><link rel="prefetch" href="/assets/js/101.3332ffed.js"><link rel="prefetch" href="/assets/js/102.d68658ee.js"><link rel="prefetch" href="/assets/js/103.42707aaf.js"><link rel="prefetch" href="/assets/js/104.d4768f93.js"><link rel="prefetch" href="/assets/js/105.8fff53f6.js"><link rel="prefetch" href="/assets/js/106.fbada1de.js"><link rel="prefetch" href="/assets/js/107.4fe9a7e9.js"><link rel="prefetch" href="/assets/js/108.4665e891.js"><link rel="prefetch" href="/assets/js/109.45eebd8c.js"><link rel="prefetch" href="/assets/js/11.64ab30b3.js"><link rel="prefetch" href="/assets/js/110.a1414e03.js"><link rel="prefetch" href="/assets/js/111.7a4a62aa.js"><link rel="prefetch" href="/assets/js/112.efbe6d51.js"><link rel="prefetch" href="/assets/js/113.b992e8a4.js"><link rel="prefetch" href="/assets/js/114.5177c8ce.js"><link rel="prefetch" href="/assets/js/115.075f90fc.js"><link rel="prefetch" href="/assets/js/116.1deaab31.js"><link rel="prefetch" href="/assets/js/117.f70bd914.js"><link rel="prefetch" href="/assets/js/118.fe49074a.js"><link rel="prefetch" href="/assets/js/119.c22a3438.js"><link rel="prefetch" href="/assets/js/12.da34a669.js"><link rel="prefetch" href="/assets/js/121.1ee52fcb.js"><link rel="prefetch" href="/assets/js/122.0fefee79.js"><link rel="prefetch" href="/assets/js/123.82eba29f.js"><link rel="prefetch" href="/assets/js/124.47b7ceab.js"><link rel="prefetch" href="/assets/js/125.abfad8ca.js"><link rel="prefetch" href="/assets/js/126.f5d76d55.js"><link rel="prefetch" href="/assets/js/127.9c22aef4.js"><link rel="prefetch" href="/assets/js/128.ca23e56a.js"><link rel="prefetch" href="/assets/js/129.5a406853.js"><link rel="prefetch" href="/assets/js/13.ab0a7f8c.js"><link rel="prefetch" href="/assets/js/130.3b83c31a.js"><link rel="prefetch" href="/assets/js/131.825bffc4.js"><link rel="prefetch" href="/assets/js/132.5801ef2e.js"><link rel="prefetch" href="/assets/js/133.55a3398d.js"><link rel="prefetch" href="/assets/js/134.ce209695.js"><link rel="prefetch" href="/assets/js/135.bdfe55c1.js"><link rel="prefetch" href="/assets/js/136.94a540a0.js"><link rel="prefetch" href="/assets/js/137.ef121728.js"><link rel="prefetch" href="/assets/js/138.7db502f3.js"><link rel="prefetch" href="/assets/js/139.9e5c4a62.js"><link rel="prefetch" href="/assets/js/14.5a036a1d.js"><link rel="prefetch" href="/assets/js/140.04d5191a.js"><link rel="prefetch" href="/assets/js/141.5882e0ab.js"><link rel="prefetch" href="/assets/js/142.265280ce.js"><link rel="prefetch" href="/assets/js/143.3cfcb370.js"><link rel="prefetch" href="/assets/js/144.442eddae.js"><link rel="prefetch" href="/assets/js/145.d46233f2.js"><link rel="prefetch" href="/assets/js/146.a073cd77.js"><link rel="prefetch" href="/assets/js/147.bb2e8373.js"><link rel="prefetch" href="/assets/js/148.8057b80e.js"><link rel="prefetch" href="/assets/js/149.19e03164.js"><link rel="prefetch" href="/assets/js/15.c56834b5.js"><link rel="prefetch" href="/assets/js/150.efaba956.js"><link rel="prefetch" href="/assets/js/151.ea695a11.js"><link rel="prefetch" href="/assets/js/152.78a3634b.js"><link rel="prefetch" href="/assets/js/153.a57baaab.js"><link rel="prefetch" href="/assets/js/154.09b2b710.js"><link rel="prefetch" href="/assets/js/155.b08156d1.js"><link rel="prefetch" href="/assets/js/156.c8258255.js"><link rel="prefetch" href="/assets/js/157.6e4eeae9.js"><link rel="prefetch" href="/assets/js/158.1fe9ff10.js"><link rel="prefetch" href="/assets/js/159.3fa0cc48.js"><link rel="prefetch" href="/assets/js/16.6fc56030.js"><link rel="prefetch" href="/assets/js/160.6736288e.js"><link rel="prefetch" href="/assets/js/161.50d2a9c9.js"><link rel="prefetch" href="/assets/js/162.52f0ef90.js"><link rel="prefetch" href="/assets/js/163.f5606104.js"><link rel="prefetch" href="/assets/js/164.3d72d556.js"><link rel="prefetch" href="/assets/js/165.6ea9b4a6.js"><link rel="prefetch" href="/assets/js/166.e92dd52e.js"><link rel="prefetch" href="/assets/js/167.99158bfe.js"><link rel="prefetch" href="/assets/js/168.0ea4cfeb.js"><link rel="prefetch" href="/assets/js/169.1c5cbf4e.js"><link rel="prefetch" href="/assets/js/17.4801cbb6.js"><link rel="prefetch" href="/assets/js/170.fe2ee093.js"><link rel="prefetch" href="/assets/js/171.296ec41b.js"><link rel="prefetch" href="/assets/js/172.e5e4bbf2.js"><link rel="prefetch" href="/assets/js/173.20e46584.js"><link rel="prefetch" href="/assets/js/174.e895f9eb.js"><link rel="prefetch" href="/assets/js/175.9a6f9361.js"><link rel="prefetch" href="/assets/js/176.9d9dc5b8.js"><link rel="prefetch" href="/assets/js/177.303b3c9a.js"><link rel="prefetch" href="/assets/js/178.92737722.js"><link rel="prefetch" href="/assets/js/179.7f97bf66.js"><link rel="prefetch" href="/assets/js/18.10e32b61.js"><link rel="prefetch" href="/assets/js/180.94154b11.js"><link rel="prefetch" href="/assets/js/181.34876d29.js"><link rel="prefetch" href="/assets/js/182.1fe422ed.js"><link rel="prefetch" href="/assets/js/183.66998488.js"><link rel="prefetch" href="/assets/js/184.e9b279f7.js"><link rel="prefetch" href="/assets/js/185.f7b0f0ff.js"><link rel="prefetch" href="/assets/js/186.2aa34353.js"><link rel="prefetch" href="/assets/js/187.45cdd99c.js"><link rel="prefetch" href="/assets/js/188.9ecfb608.js"><link rel="prefetch" href="/assets/js/189.3f4bd914.js"><link rel="prefetch" href="/assets/js/19.b8802da1.js"><link rel="prefetch" href="/assets/js/190.c0a6e8a8.js"><link rel="prefetch" href="/assets/js/191.ad5838b2.js"><link rel="prefetch" href="/assets/js/192.80ab1f38.js"><link rel="prefetch" href="/assets/js/20.a138065d.js"><link rel="prefetch" href="/assets/js/21.a831d950.js"><link rel="prefetch" href="/assets/js/22.316c008f.js"><link rel="prefetch" href="/assets/js/23.3fca085f.js"><link rel="prefetch" href="/assets/js/24.1a9333de.js"><link rel="prefetch" href="/assets/js/25.5c20ba84.js"><link rel="prefetch" href="/assets/js/26.4272bcd9.js"><link rel="prefetch" href="/assets/js/27.6efb7f2f.js"><link rel="prefetch" href="/assets/js/28.b1f2d5af.js"><link rel="prefetch" href="/assets/js/29.8a80ff2e.js"><link rel="prefetch" href="/assets/js/30.520f68e5.js"><link rel="prefetch" href="/assets/js/31.08a45650.js"><link rel="prefetch" href="/assets/js/32.16adb96b.js"><link rel="prefetch" href="/assets/js/33.b8a646e5.js"><link rel="prefetch" href="/assets/js/34.b3194492.js"><link rel="prefetch" href="/assets/js/35.899b5040.js"><link rel="prefetch" href="/assets/js/36.d16f2814.js"><link rel="prefetch" href="/assets/js/37.d27958b7.js"><link rel="prefetch" href="/assets/js/38.0d4b2a99.js"><link rel="prefetch" href="/assets/js/39.d4d49b04.js"><link rel="prefetch" href="/assets/js/4.21968a08.js"><link rel="prefetch" href="/assets/js/40.c70b440c.js"><link rel="prefetch" href="/assets/js/41.26676b92.js"><link rel="prefetch" href="/assets/js/42.e509bc95.js"><link rel="prefetch" href="/assets/js/43.2eb737ea.js"><link rel="prefetch" href="/assets/js/44.85880c98.js"><link rel="prefetch" href="/assets/js/45.e5080d32.js"><link rel="prefetch" href="/assets/js/46.b33dd26e.js"><link rel="prefetch" href="/assets/js/47.0e787092.js"><link rel="prefetch" href="/assets/js/48.b59069f2.js"><link rel="prefetch" href="/assets/js/49.0c3b8834.js"><link rel="prefetch" href="/assets/js/5.5542e250.js"><link rel="prefetch" href="/assets/js/50.2d2fbec8.js"><link rel="prefetch" href="/assets/js/51.1215fb32.js"><link rel="prefetch" href="/assets/js/52.0b1459a8.js"><link rel="prefetch" href="/assets/js/53.38f0f76f.js"><link rel="prefetch" href="/assets/js/54.424d0865.js"><link rel="prefetch" href="/assets/js/55.ba08f51f.js"><link rel="prefetch" href="/assets/js/56.2d6250be.js"><link rel="prefetch" href="/assets/js/57.2d26289e.js"><link rel="prefetch" href="/assets/js/58.fc0e3909.js"><link rel="prefetch" href="/assets/js/59.59abc65d.js"><link rel="prefetch" href="/assets/js/6.9dc9db4b.js"><link rel="prefetch" href="/assets/js/60.199474cf.js"><link rel="prefetch" href="/assets/js/61.c36f2fed.js"><link rel="prefetch" href="/assets/js/62.ec704b23.js"><link rel="prefetch" href="/assets/js/63.8b0cfa49.js"><link rel="prefetch" href="/assets/js/64.ef5e918b.js"><link rel="prefetch" href="/assets/js/65.c038a8b2.js"><link rel="prefetch" href="/assets/js/66.36e13b0d.js"><link rel="prefetch" href="/assets/js/67.a88fc3c3.js"><link rel="prefetch" href="/assets/js/68.b7bac379.js"><link rel="prefetch" href="/assets/js/69.d4e3775c.js"><link rel="prefetch" href="/assets/js/7.3ed586ab.js"><link rel="prefetch" href="/assets/js/70.d54118fa.js"><link rel="prefetch" href="/assets/js/71.5c70d387.js"><link rel="prefetch" href="/assets/js/72.3859ae52.js"><link rel="prefetch" href="/assets/js/73.3d51ab01.js"><link rel="prefetch" href="/assets/js/74.32acade4.js"><link rel="prefetch" href="/assets/js/75.c77a27b1.js"><link rel="prefetch" href="/assets/js/76.15f95864.js"><link rel="prefetch" href="/assets/js/77.ae7f7333.js"><link rel="prefetch" href="/assets/js/78.fa38f386.js"><link rel="prefetch" href="/assets/js/79.85c8b52c.js"><link rel="prefetch" href="/assets/js/8.2e253f77.js"><link rel="prefetch" href="/assets/js/80.07f7d71d.js"><link rel="prefetch" href="/assets/js/81.7f387c70.js"><link rel="prefetch" href="/assets/js/82.b4886c33.js"><link rel="prefetch" href="/assets/js/83.caf9b588.js"><link rel="prefetch" href="/assets/js/84.cab4f7a9.js"><link rel="prefetch" href="/assets/js/85.11f33ef6.js"><link rel="prefetch" href="/assets/js/86.db73194a.js"><link rel="prefetch" href="/assets/js/87.5a729c41.js"><link rel="prefetch" href="/assets/js/88.f42a7cd2.js"><link rel="prefetch" href="/assets/js/89.80851bdc.js"><link rel="prefetch" href="/assets/js/9.d0df109c.js"><link rel="prefetch" href="/assets/js/90.6cf35b2e.js"><link rel="prefetch" href="/assets/js/91.7143dd48.js"><link rel="prefetch" href="/assets/js/92.0174eedd.js"><link rel="prefetch" href="/assets/js/93.56e9a799.js"><link rel="prefetch" href="/assets/js/94.ab5159b8.js"><link rel="prefetch" href="/assets/js/95.ae566597.js"><link rel="prefetch" href="/assets/js/96.76d3ae40.js"><link rel="prefetch" href="/assets/js/97.93d5643b.js"><link rel="prefetch" href="/assets/js/98.555d21ae.js"><link rel="prefetch" href="/assets/js/99.d65a5eff.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.576c9d73.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container" data-v-dad8a512><div data-v-dad8a512><div id="loader-wrapper" class="loading-wrapper" data-v-d48f4d20 data-v-dad8a512 data-v-dad8a512><div class="loader-main" data-v-d48f4d20><div data-v-d48f4d20></div><div data-v-d48f4d20></div><div data-v-d48f4d20></div><div data-v-d48f4d20></div></div> <!----> <!----></div> <div class="password-shadow password-wrapper-out" style="display:none;" data-v-64685f0e data-v-dad8a512 data-v-dad8a512><h3 class="title" style="display:none;" data-v-64685f0e data-v-64685f0e>甲乙丙遇见丁</h3> <!----> <label id="box" class="inputBox" style="display:none;" data-v-64685f0e data-v-64685f0e><input type="password" value="" data-v-64685f0e> <span data-v-64685f0e>Konck! Knock!</span> <button data-v-64685f0e>OK</button></label> <div class="footer" style="display:none;" data-v-64685f0e data-v-64685f0e><span data-v-64685f0e><i class="iconfont reco-theme" data-v-64685f0e></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-64685f0e>vuePress-theme-reco</a></span> <span data-v-64685f0e><i class="iconfont reco-copyright" data-v-64685f0e></i> <a data-v-64685f0e><span data-v-64685f0e>YJcoders</span>
+            
+          <span data-v-64685f0e>2017 - </span>
+          2020
+        </a></span></div></div> <div class="hide" data-v-dad8a512><header class="navbar" data-v-dad8a512><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/logo.gif" alt="甲乙丙遇见丁" class="logo"> <span class="site-name">甲乙丙遇见丁</span></a> <div class="links"><div class="color-picker"><a class="color-button"><i class="iconfont reco-color"></i></a> <div class="color-picker-menu" style="display:none;"><div class="mode-options"><h4 class="title">Choose mode</h4> <ul class="color-mode-options"><li class="dark">dark</li><li class="auto active">auto</li><li class="light">light</li></ul></div></div></div> <div class="search-box"><i class="iconfont reco-search"></i> <input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link"><i class="iconfont reco-home"></i>
+  Home
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      分类
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/categories/CSS/" class="nav-link"><i class="iconfont undefined"></i>
+  CSS
+</a></li><li class="dropdown-item"><!----> <a href="/categories/Git/" class="nav-link"><i class="iconfont undefined"></i>
+  Git
+</a></li><li class="dropdown-item"><!----> <a href="/categories/JS/" class="nav-link"><i class="iconfont undefined"></i>
+  JS
+</a></li><li class="dropdown-item"><!----> <a href="/categories/Vue/" class="nav-link"><i class="iconfont undefined"></i>
+  Vue
+</a></li><li class="dropdown-item"><!----> <a href="/categories/Antd-for-vue/" class="nav-link"><i class="iconfont undefined"></i>
+  Antd-for-vue
+</a></li><li class="dropdown-item"><!----> <a href="/categories/ElementUI/" class="nav-link"><i class="iconfont undefined"></i>
+  ElementUI
+</a></li><li class="dropdown-item"><!----> <a href="/categories/webpack/" class="nav-link"><i class="iconfont undefined"></i>
+  webpack
+</a></li><li class="dropdown-item"><!----> <a href="/categories/Echarts/" class="nav-link"><i class="iconfont undefined"></i>
+  Echarts
+</a></li></ul></div></div><div class="nav-item"><a href="/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  Tag
+</a></div><div class="nav-item"><a href="/timeLine/" class="nav-link"><i class="iconfont reco-date"></i>
+  TimeLine
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-message"></i>
+      Contact
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://github.com/YJcoders" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-github"></i>
+  GitHub
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask" data-v-dad8a512></div> <aside class="sidebar" data-v-dad8a512><div class="personal-info-wrapper" data-v-ca798c94 data-v-dad8a512><img src="/avatar.jpg" alt="author-avatar" class="personal-img" data-v-ca798c94> <h3 class="name" data-v-ca798c94>
+    YJcoders
+  </h3> <div class="num" data-v-ca798c94><div data-v-ca798c94><h3 data-v-ca798c94>58</h3> <h6 data-v-ca798c94>Article</h6></div> <div data-v-ca798c94><h3 data-v-ca798c94>31</h3> <h6 data-v-ca798c94>Tag</h6></div></div> <hr data-v-ca798c94></div> <nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link"><i class="iconfont reco-home"></i>
+  Home
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      分类
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/categories/CSS/" class="nav-link"><i class="iconfont undefined"></i>
+  CSS
+</a></li><li class="dropdown-item"><!----> <a href="/categories/Git/" class="nav-link"><i class="iconfont undefined"></i>
+  Git
+</a></li><li class="dropdown-item"><!----> <a href="/categories/JS/" class="nav-link"><i class="iconfont undefined"></i>
+  JS
+</a></li><li class="dropdown-item"><!----> <a href="/categories/Vue/" class="nav-link"><i class="iconfont undefined"></i>
+  Vue
+</a></li><li class="dropdown-item"><!----> <a href="/categories/Antd-for-vue/" class="nav-link"><i class="iconfont undefined"></i>
+  Antd-for-vue
+</a></li><li class="dropdown-item"><!----> <a href="/categories/ElementUI/" class="nav-link"><i class="iconfont undefined"></i>
+  ElementUI
+</a></li><li class="dropdown-item"><!----> <a href="/categories/webpack/" class="nav-link"><i class="iconfont undefined"></i>
+  webpack
+</a></li><li class="dropdown-item"><!----> <a href="/categories/Echarts/" class="nav-link"><i class="iconfont undefined"></i>
+  Echarts
+</a></li></ul></div></div><div class="nav-item"><a href="/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  Tag
+</a></div><div class="nav-item"><a href="/timeLine/" class="nav-link"><i class="iconfont reco-date"></i>
+  TimeLine
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-message"></i>
+      Contact
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://github.com/YJcoders" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-github"></i>
+  GitHub
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul></div></div> <!----></nav> <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>linux</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/blogs/OS/linux/1、起步.html" class="sidebar-link">Linux起步</a></li><li><a href="/blogs/OS/linux/2、文件权限.html" class="sidebar-link">/blogs/OS/linux/2、文件权限.html</a></li><li><a href="/blogs/OS/linux/3、vim快捷键.html" class="sidebar-link">/blogs/OS/linux/3、vim快捷键.html</a></li><li><a href="/blogs/OS/linux/4、mysql.html" class="sidebar-link">MySQL</a></li><li><a href="/blogs/OS/linux/5、CentOS.html" class="sidebar-link">CentOS</a></li><li><a href="/blogs/OS/linux/" aria-current="page" class="sidebar-link">首页</a></li><li><a href="/blogs/OS/linux/everything-is-a-file.html" class="sidebar-link">一切皆文件</a></li><li><a href="/blogs/OS/linux/alias.html" class="sidebar-link">别名 alias</a></li><li><a href="/blogs/OS/linux/ansible.html" class="sidebar-link">分发脚本 ansible</a></li><li><a href="/blogs/OS/linux/archiving-and-compression.html" class="sidebar-link">归档和压缩</a></li><li><a href="/blogs/OS/linux/command-options.html" class="sidebar-link">命令选项</a></li><li><a href="/blogs/OS/linux/command-shortcut.html" class="sidebar-link">命令行快捷键</a></li><li><a href="/blogs/OS/linux/crontab.html" class="sidebar-link">解放双手计划</a></li><li><a href="/blogs/OS/linux/detect-your-server.html" class="sidebar-link">检测服务器通达</a></li><li><a href="/blogs/OS/linux/directory-structure.html" class="sidebar-link">目录结构</a></li><li><a href="/blogs/OS/linux/firewalld.html" class="sidebar-link">防火墙 firewalld</a></li><li><a href="/blogs/OS/linux/gaudy-and-pragmatical-command.html" class="sidebar-link">花里胡哨且实用的命令</a></li><li><a href="/blogs/OS/linux/generate-ssh-key.html" class="sidebar-link">创建 SSH Key</a></li><li><a href="/blogs/OS/linux/grep-sed-awk.html" class="sidebar-link">文本三剑客</a></li><li><a href="/blogs/OS/linux/how-to-enable-the-hard-disk.html" class="sidebar-link">如何启用硬盘</a></li><li><a href="/blogs/OS/linux/how-to-install-linux-on-virtualbox.html" class="sidebar-link">虚拟机中安装 Linux</a></li><li><a href="/blogs/OS/linux/io-redirection.html" class="sidebar-link">输入、输出重定向</a></li><li><a href="/blogs/OS/linux/login-with-rsa-key.html" class="sidebar-link">使用 RSA 登录服务器</a></li><li><a href="/blogs/OS/linux/raid.html" class="sidebar-link">磁盘阵列</a></li><li><a href="/blogs/OS/linux/rsync-and-scp.html" class="sidebar-link">远程同步文件</a></li><li><a href="/blogs/OS/linux/systemd.html" aria-current="page" class="active sidebar-link">守护系统 systemd</a></li><li><a href="/blogs/OS/linux/user.html" class="sidebar-link">用户管理</a></li><li><a href="/blogs/OS/linux/view-text-context.html" class="sidebar-link">查看文本内容</a></li><li><a href="/blogs/OS/linux/xargs.html" class="sidebar-link">传参 xargs</a></li></ul></section></li></ul> </aside> <div class="password-shadow password-wrapper-in" style="display:none;" data-v-64685f0e data-v-dad8a512><h3 class="title" style="display:none;" data-v-64685f0e data-v-64685f0e>守护系统 systemd</h3> <!----> <label id="box" class="inputBox" style="display:none;" data-v-64685f0e data-v-64685f0e><input type="password" value="" data-v-64685f0e> <span data-v-64685f0e>Konck! Knock!</span> <button data-v-64685f0e>OK</button></label> <div class="footer" style="display:none;" data-v-64685f0e data-v-64685f0e><span data-v-64685f0e><i class="iconfont reco-theme" data-v-64685f0e></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-64685f0e>vuePress-theme-reco</a></span> <span data-v-64685f0e><i class="iconfont reco-copyright" data-v-64685f0e></i> <a data-v-64685f0e><span data-v-64685f0e>YJcoders</span>
+            
+          <span data-v-64685f0e>2017 - </span>
+          2020
+        </a></span></div></div> <div data-v-dad8a512><main class="page"><div class="page-title" style="display:none;"><h1>守护系统 systemd</h1> <hr> <div data-v-aa64b9d0><i class="iconfont reco-account" data-v-aa64b9d0><span data-v-aa64b9d0>YJcoders</span></i> <!----> <i class="iconfont reco-eye" data-v-aa64b9d0><span id="/blogs/OS/linux/systemd.html" data-flag-title="Your Article Title" class="leancloud-visitors" data-v-aa64b9d0><a class="leancloud-visitors-count" style="font-size:.9rem;font-weight:normal;color:#999;"></a></span></i> <!----></div></div> <div class="theme-reco-content content__default" style="display:none;"><h2 id="概述"><a href="#概述" class="header-anchor">#</a> 概述</h2> <p>Systemd 设计的目标是，为系统的启动和管理提供一整套的完整解决方案。</p> <p>根据 Linux 惯例，字母 <code>d</code> 是守护进程（daemon）的缩写。Systemd 这个名字的含义，就是它要守护整个系统。</p> <p>Systemd 的优点是功能强大，使用方便，缺点是体系庞大，非常复杂。事实上，现在还有很多人反对使用 Systemd，理由就是它过于复杂，与操作系统的其他部分强耦合，违反 ”keep simple，keep stupid“ 的 Unix 哲学。</p> <blockquote><p>原文实在是太详细了，实在没必要重复整理。</p></blockquote> <h2 id="实战"><a href="#实战" class="header-anchor">#</a> 实战</h2> <p>模拟一个操作基本的操作流程：</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token comment"># 有些软件支持 Systemd，安装时，会自动在 `/usr/lib/systemd/system` 目录添加一个配置文件</span>
+<span class="token comment"># 然后就可以让其开机自启了</span>
+<span class="token function">sudo</span> systemctl <span class="token builtin class-name">enable</span> httpd
+<span class="token comment"># 上面的命令相当于在 `/etc/systemd/system` 目录添加一个符号链接，指向 `/usr/lib/systemd/system` 里面的 `httpd.service` 文件。</span>
+<span class="token comment"># 这是因为开机时，Systemd 只执行 `/etc/systemd/system` 目录里面的配置文件。这也意味着，如果把修改后的配置文件放在该目录，就可以达到覆盖原始配置的效果。</span>
+
+<span class="token comment"># 设置开机启动以后，软件并不会立即启动，必须等到下一次开机。如果想现在就运行该软件，那么要执行 `systemctl start` 命令。</span>
+<span class="token function">sudo</span> systemctl start httpd
+<span class="token comment"># 执行上面的命令以后，有可能启动失败，因此要用systemctl status命令查看一下该服务的状态。</span>
+
+<span class="token comment"># 终止正在运行的服务，需要执行 `systemctl stop` 命令。</span>
+<span class="token function">sudo</span> systemctl stop httpd.service
+<span class="token comment"># 有时候，该命令可能没有响应，服务停不下来。这时候就不得不&quot;杀进程&quot;了，向正在运行的进程发出kill信号。</span>
+<span class="token function">sudo</span> systemctl <span class="token function">kill</span> httpd.service
+<span class="token comment"># 此外，重启服务要执行systemctl restart命令。</span>
+<span class="token function">sudo</span> systemctl restart httpd.service
+
+<span class="token comment"># 一个服务怎么启动，完全由它的配置文件决定。</span>
+systemctl <span class="token function">cat</span> sshd.service
+
+<span class="token comment"># 修改配置文件以后，需要重新加载配置文件，然后重新启动相关服务。</span>
+<span class="token comment"># 重新加载配置文件</span>
+<span class="token function">sudo</span> systemctl daemon-reload
+
+<span class="token comment"># 重启相关服务</span>
+<span class="token function">sudo</span> systemctl restart foobar
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br></div></div><h2 id="系统管理"><a href="#系统管理" class="header-anchor">#</a> 系统管理</h2> <p>Systemd 并不是一个命令，而是一组命令，涉及系统管理的方方面面。</p> <h3 id="_1-systemctl"><a href="#_1-systemctl" class="header-anchor">#</a> 1. systemctl</h3> <p><code>systemctl</code> 是 Systemd 的主命令，用于管理系统。</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token comment"># 重启系统</span>
+<span class="token function">sudo</span> systemctl <span class="token function">reboot</span>
+
+<span class="token comment"># 关闭系统，切断电源</span>
+<span class="token function">sudo</span> systemctl poweroff
+
+<span class="token comment"># CPU停止工作</span>
+<span class="token function">sudo</span> systemctl <span class="token function">halt</span>
+
+<span class="token comment"># 暂停系统</span>
+<span class="token function">sudo</span> systemctl <span class="token function">suspend</span>
+
+<span class="token comment"># 让系统进入冬眠状态</span>
+<span class="token function">sudo</span> systemctl hibernate
+
+<span class="token comment"># 让西荣进入交互式休眠状态</span>
+<span class="token function">sudo</span> systemctl hybrid-sleep
+
+<span class="token comment"># 启动进入救援状态</span>
+<span class="token function">sudo</span> systemctl rescue
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br></div></div><h3 id="_2-systemd-analyze"><a href="#_2-systemd-analyze" class="header-anchor">#</a> 2. systemd-analyze</h3> <p><code>systemd-analyze</code> 命令用于查看启动耗时。</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token comment"># 查看启动耗时</span>
+systemd-analyze                                                                                       
+
+<span class="token comment"># 查看每个服务的启动耗时</span>
+systemd-analyze blame
+
+<span class="token comment"># 显示瀑布状的启动过程流</span>
+systemd-analyze critical-chain
+
+<span class="token comment"># 显示指定服务的启动流</span>
+systemd-analyze critical-chain atd.service
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br></div></div><h3 id="_3-hostnamectl"><a href="#_3-hostnamectl" class="header-anchor">#</a> 3. hostnamectl</h3> <p><code>hostnamectl</code>命令用于查看当前主机的信息。</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token comment"># 显示当前主机的信息</span>
+hostnamectl
+
+<span class="token comment"># 设置主机名。</span>
+<span class="token function">sudo</span> hostnamectl set-hostname rhel7
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><h3 id="_4-localectl"><a href="#_4-localectl" class="header-anchor">#</a> 4. localectl</h3> <p><code>localectl</code>命令用于查看本地化设置。</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token comment"># 查看本地化设置</span>
+localectl
+
+<span class="token comment"># 设置本地化参数。</span>
+<span class="token function">sudo</span> localectl set-locale <span class="token assign-left variable"><span class="token environment constant">LANG</span></span><span class="token operator">=</span>en_GB.utf8
+<span class="token function">sudo</span> localectl set-keymap en_GB
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><h3 id="_5-timedatectl"><a href="#_5-timedatectl" class="header-anchor">#</a> 5. timedatectl</h3> <p><code>timedatectl</code>命令用于查看当前时区设置。</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token comment"># 查看当前时区设置</span>
+timedatectl
+
+<span class="token comment"># 显示所有可用的时区</span>
+timedatectl list-timezones                                                                                   
+<span class="token comment"># 设置当前时区</span>
+<span class="token function">sudo</span> timedatectl set-timezone America/New_York
+<span class="token function">sudo</span> timedatectl set-time YYYY-MM-DD
+<span class="token function">sudo</span> timedatectl set-time HH:MM:SS
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><h3 id="_6-loginctl"><a href="#_6-loginctl" class="header-anchor">#</a> 6. loginctl</h3> <p><code>loginctl</code>命令用于查看当前登录的用户。</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token comment"># 列出当前session</span>
+loginctl list-sessions
+
+<span class="token comment"># 列出当前登录用户</span>
+loginctl list-users
+
+<span class="token comment"># 列出显示指定用户的信息</span>
+loginctl show-user ruanyf
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><h2 id="unit"><a href="#unit" class="header-anchor">#</a> Unit</h2> <p>Systemd 可以管理所有系统资源。不同的资源统称为 Unit（单位）。</p> <p>Unit 一共分成12种。</p> <blockquote><ul><li>Service unit：系统服务</li> <li>Target unit：多个 Unit 构成的一个组</li> <li>Device Unit：硬件设备</li> <li>Mount Unit：文件系统的挂载点</li> <li>Automount Unit：自动挂载点</li> <li>Path Unit：文件或路径</li> <li>Scope Unit：不是由 Systemd 启动的外部进程</li> <li>Slice Unit：进程组</li> <li>Snapshot Unit：Systemd 快照，可以切回某个快照</li> <li>Socket Unit：进程间通信的 socket</li> <li>Swap Unit：swap 文件</li> <li>Timer Unit：定时器</li></ul></blockquote> <p><code>systemctl list-units</code> 命令可以查看当前系统的所有 Unit 。</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token comment"># 列出正在运行的 Unit</span>
+systemctl list-units
+
+<span class="token comment"># 列出所有Unit，包括没有找到配置文件的或者启动失败的</span>
+systemctl list-units --all
+
+<span class="token comment"># 列出所有没有运行的 Unit</span>
+systemctl list-units --all --state<span class="token operator">=</span>inactive
+
+<span class="token comment"># 列出所有加载失败的 Unit</span>
+systemctl list-units --failed
+
+<span class="token comment"># 列出所有正在运行的、类型为 service 的 Unit</span>
+systemctl list-units --type<span class="token operator">=</span>service
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br></div></div><h3 id="_1-unit-的状态"><a href="#_1-unit-的状态" class="header-anchor">#</a> 1. Unit 的状态</h3> <p><code>systemctl status</code> 命令用于查看系统状态和单个 Unit 的状态。</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token comment"># 显示系统状态</span>
+systemctl status
+
+<span class="token comment"># 显示单个 Unit 的状态</span>
+sysystemctl status bluetooth.service
+
+<span class="token comment"># 显示远程主机的某个 Unit 的状态</span>
+systemctl -H root@rhel7.example.com status httpd.service
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><p>除了 <code>status</code> 命令，<code>systemctl</code> 还提供了三个查询状态的简单方法，主要供脚本内部的判断语句使用。</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token comment"># 显示某个 Unit 是否正在运行</span>
+systemctl is-active application.service
+
+<span class="token comment"># 显示某个 Unit 是否处于启动失败状态</span>
+systemctl is-failed application.service
+
+<span class="token comment"># 显示某个 Unit 服务是否建立了启动链接</span>
+systemctl is-enabled application.service
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><h3 id="_2-unit-管理"><a href="#_2-unit-管理" class="header-anchor">#</a> 2. Unit 管理</h3> <p><strong>对于用户来说，最常用的是下面这些命令，用于启动和停止 Unit（主要是 service）。</strong></p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token comment"># 立即启动一个服务</span>
+<span class="token function">sudo</span> systemctl start apache.service
+
+<span class="token comment"># 立即停止一个服务</span>
+<span class="token function">sudo</span> systemctl stop apache.service
+
+<span class="token comment"># 重启一个服务</span>
+<span class="token function">sudo</span> systemctl restart apache.service
+
+<span class="token comment"># 杀死一个服务的所有子进程</span>
+<span class="token function">sudo</span> systemctl <span class="token function">kill</span> apache.service
+
+<span class="token comment"># 重新加载一个服务的配置文件</span>
+<span class="token function">sudo</span> systemctl reload apache.service
+
+<span class="token comment"># 重载所有修改过的配置文件</span>
+<span class="token function">sudo</span> systemctl daemon-reload
+
+<span class="token comment"># 显示某个 Unit 的所有底层参数</span>
+systemctl show httpd.service
+
+<span class="token comment"># 显示某个 Unit 的指定属性的值</span>
+systemctl show -p CPUShares httpd.service
+
+<span class="token comment"># 设置某个 Unit 的指定属性</span>
+<span class="token function">sudo</span> systemctl set-property httpd.service <span class="token assign-left variable">CPUShares</span><span class="token operator">=</span><span class="token number">500</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br></div></div><h3 id="_3-依赖关系"><a href="#_3-依赖关系" class="header-anchor">#</a> 3. 依赖关系</h3> <p>Unit 之间存在依赖关系：A 依赖于 B，就意味着 Systemd 在启动 A 的时候，同时会去启动 B。</p> <p><code>systemctl list-dependencies</code> 命令列出一个 Unit 的所有依赖。</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>systemctl list-dependencies nginx.service
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>上面命令的输出结果之中，有些依赖是 Target 类型（详见下文），默认不会展开显示。如果要展开 Target，就需要使用 <code>--all</code> 参数。</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>systemctl list-dependencies --all nginx.service
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h2 id="unit-的配置文件"><a href="#unit-的配置文件" class="header-anchor">#</a> Unit 的配置文件</h2> <p>每一个 Unit 都有一个配置文件，告诉 Systemd 怎么启动这个 Unit 。</p> <p>Systemd 默认从目录 <code>/etc/systemd/system/</code> 读取配置文件。但是，里面存放的大部分文件都是符号链接，指向目录 <code>/usr/lib/systemd/system/</code>，真正的配置文件存放在那个目录。</p> <p><code>systemctl enable</code> 命令用于在上面两个目录之间，建立符号链接关系。</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token function">sudo</span> systemctl <span class="token builtin class-name">enable</span> clamd@scan.service
+<span class="token comment"># 等同于</span>
+<span class="token function">sudo</span> <span class="token function">ln</span> -s <span class="token string">'/usr/lib/systemd/system/clamd@scan.service'</span> <span class="token string">'/etc/systemd/system/multi-user.target.wants/clamd@scan.service'</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p>如果配置文件里面设置了开机启动，<code>systemctl enable</code> 命令相当于激活开机启动。</p> <p>与之对应的，<code>systemctl disable</code> 命令用于在两个目录之间，撤销符号链接关系，相当于撤销开机启动。</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token function">sudo</span> systemctl disable clamd@scan.service
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>配置文件的后缀名，就是该 Unit 的种类，比如 <code>sshd.socket</code> 。如果省略，Systemd 默认后缀名为 <code>.service</code>，所以 <code>sshd</code> 会被理解成 <code>sshd.service</code> 。</p> <h3 id="_1-配置文件的状态"><a href="#_1-配置文件的状态" class="header-anchor">#</a> 1. 配置文件的状态</h3> <p><code>systemctl list-unit-files</code> 命令用于列出所有配置文件。</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token comment"># 列出所有配置文件</span>
+systemctl list-unit-files
+
+<span class="token comment"># 列出指定类型的配置文件</span>
+systemctl list-unit-files --type<span class="token operator">=</span>service
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><p>这个命令会输出一个列表。</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>systemctl list-unit-files
+
+UNIT FILE              STATE
+chronyd.service        enabled
+clamd@.service         static
+clamd@scan.service     disabled
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><p>这个列表显示每个配置文件的状态，一共有四种。</p> <ul><li>enabled：已建立启动链接</li> <li>disabled：没建立启动链接</li> <li>static：该配置文件没有 <code>[Install]</code> 部分（无法执行），只能作为其他配置文件的依赖</li> <li>masked：该配置文件被禁止建立启动链接</li></ul> <p>注意，从配置文件的状态无法看出，该 Unit 是否正在运行。这必须执行前面提到的 <code>systemctl status</code> 命令。</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>systemctl status bluetooth.service
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>一旦修改配置文件，就要让 SystemD 重新加载配置文件，然后重新启动，否则修改不会生效。</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token function">sudo</span> systemctl daemon-reload
+<span class="token function">sudo</span> systemctl restart httpd.service
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><h3 id="_2-配置文件的格式"><a href="#_2-配置文件的格式" class="header-anchor">#</a> 2. 配置文件的格式</h3> <p>配置文件就是普通的文本文件，可以用文本编辑器打开。</p> <p><code>systemctl cat</code> 命令可以查看配置文件的内容。</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>systemctl <span class="token function">cat</span> atd.service
+
+<span class="token punctuation">[</span>Unit<span class="token punctuation">]</span>
+<span class="token assign-left variable">Description</span><span class="token operator">=</span>ATD daemon
+
+<span class="token punctuation">[</span>Service<span class="token punctuation">]</span>
+<span class="token assign-left variable">Type</span><span class="token operator">=</span>forking
+<span class="token assign-left variable">ExecStart</span><span class="token operator">=</span>/usr/bin/atd
+
+<span class="token punctuation">[</span>Install<span class="token punctuation">]</span>
+<span class="token assign-left variable">WantedBy</span><span class="token operator">=</span>multi-user.target
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br></div></div><p>从上面的输出可以看到，配置文件分成几个区块。每个区块的第一行，是用方括号表示的区别名，比如 <code>[Unit]</code> 。注意，配置文件的区块名和字段名，都是大小写敏感的。</p> <p>每个区块内部是一些等号连接的键值对。</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token punctuation">[</span>Section<span class="token punctuation">]</span>
+<span class="token assign-left variable">Directive1</span><span class="token operator">=</span>value
+<span class="token assign-left variable">Directive2</span><span class="token operator">=</span>value
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p>注意，键值对的等号两侧不能有空格。</p> <h3 id="_3-配置文件的区块"><a href="#_3-配置文件的区块" class="header-anchor">#</a> 3. 配置文件的区块</h3> <p><code>[Unit]</code> 区块通常是配置文件的第一个区块，用来定义 Unit 的元数据，以及配置与其他 Unit 的关系。它的主要字段如下：</p> <ul><li><code>Description</code>：简短描述</li> <li><code>Documentation</code>：文档地址</li> <li><code>Requires</code>：当前 Unit 依赖的其他 Unit，如果它们没有运行，当前 Unit 会启动失败</li> <li><code>Wants</code>：与当前 Unit 配合的其他 Unit，如果它们没有运行，当前 Unit 不会启动失败</li> <li><code>BindsTo</code>：与<code>Requires</code>类似，它指定的 Unit 如果退出，会导致当前 Unit 停止运行</li> <li><code>Before</code>：如果该字段指定的 Unit 也要启动，那么必须在当前 Unit 之后启动</li> <li><code>After</code>：如果该字段指定的 Unit 也要启动，那么必须在当前 Unit 之前启动</li> <li><code>Conflicts</code>：这里指定的 Unit 不能与当前 Unit 同时运行</li> <li><code>Condition...</code>：当前 Unit 运行必须满足的条件，否则不会运行</li> <li><code>Assert...</code>：当前 Unit 运行必须满足的条件，否则会报启动失败</li></ul> <p><code>[Install]</code> 通常是配置文件的最后一个区块，用来定义如何启动，以及是否开机启动。它的主要字段如下：</p> <ul><li><code>WantedBy</code>：它的值是一个或多个 Target，当前 Unit 激活时（enable）符号链接会放入<code>/etc/systemd/system</code>目录下面以 Target 名 + <code>.wants</code>后缀构成的子目录中</li> <li><code>RequiredBy</code>：它的值是一个或多个 Target，当前 Unit 激活时，符号链接会放入<code>/etc/systemd/system</code>目录下面以 Target 名 + <code>.required</code>后缀构成的子目录中</li> <li><code>Alias</code>：当前 Unit 可用于启动的别名</li> <li><code>Also</code>：当前 Unit 激活（enable）时，会被同时激活的其他 Unit</li></ul> <p><code>[Service]</code> 区块用来 Service 的配置，只有 Service 类型的 Unit 才有这个区块。它的主要字段如下：</p> <ul><li><code>Type</code>：定义启动时的进程行为。它有以下几种值。</li> <li><code>Type=simple</code>：默认值，执行<code>ExecStart</code>指定的命令，启动主进程</li> <li><code>Type=forking</code>：以 fork 方式从父进程创建子进程，创建后父进程会立即退出</li> <li><code>Type=oneshot</code>：一次性进程，Systemd 会等当前服务退出，再继续往下执行</li> <li><code>Type=dbus</code>：当前服务通过D-Bus启动</li> <li><code>Type=notify</code>：当前服务启动完毕，会通知<code>Systemd</code>，再继续往下执行</li> <li><code>Type=idle</code>：若有其他任务执行完毕，当前服务才会运行</li> <li><code>ExecStart</code>：启动当前服务的命令</li> <li><code>ExecStartPre</code>：启动当前服务之前执行的命令</li> <li><code>ExecStartPost</code>：启动当前服务之后执行的命令</li> <li><code>ExecReload</code>：重启当前服务时执行的命令</li> <li><code>ExecStop</code>：停止当前服务时执行的命令</li> <li><code>ExecStopPost</code>：停止当其服务之后执行的命令</li> <li><code>RestartSec</code>：自动重启当前服务间隔的秒数</li> <li><code>Restart</code>：定义何种情况 Systemd 会自动重启当前服务，可能的值包括<code>always</code>（总是重启）、<code>on-success</code>、<code>on-failure</code>、<code>on-abnormal</code>、<code>on-abort</code>、<code>on-watchdog</code></li> <li><code>TimeoutSec</code>：定义 Systemd 停止当前服务之前等待的秒数</li> <li><code>Environment</code>：指定环境变量</li></ul> <p>Unit 配置文件的完整字段清单，请参考<a href="https://www.freedesktop.org/software/systemd/man/systemd.unit.html" target="_blank" rel="noopener noreferrer">官方文档<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>。</p> <h2 id="target"><a href="#target" class="header-anchor">#</a> Target</h2> <p>启动计算机的时候，需要启动大量的 Unit。如果每一次启动，都要一一写明本次启动需要哪些 Unit，显然非常不方便。Systemd 的解决方案就是 Target。</p> <p>简单说，Target 就是一个 Unit 组，包含许多相关的 Unit 。启动某个 Target 的时候，Systemd 就会启动里面所有的 Unit。从这个意义上说，Target 这个概念类似于&quot;状态点&quot;，启动某个 Target 就好比启动到某种状态。</p> <p>传统的 <code>init</code> 启动模式里面，有 RunLevel 的概念，跟 Target 的作用很类似。不同的是，RunLevel 是互斥的，不可能多个 RunLevel 同时启动，但是多个 Target 可以同时启动。</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token comment"># 查看当前系统的所有 Target</span>
+systemctl list-unit-files --type<span class="token operator">=</span>target
+
+<span class="token comment"># 查看一个 Target 包含的所有 Unit</span>
+systemctl list-dependencies multi-user.target
+
+<span class="token comment"># 查看启动时的默认 Target</span>
+systemctl get-default
+
+<span class="token comment"># 设置启动时的默认 Target</span>
+<span class="token function">sudo</span> systemctl set-default multi-user.target
+
+<span class="token comment"># 切换 Target 时，默认不关闭前一个 Target 启动的进程，</span>
+<span class="token comment"># systemctl isolate 命令改变这种行为，</span>
+<span class="token comment"># 关闭前一个 Target 里面所有不属于后一个 Target 的进程</span>
+<span class="token function">sudo</span> systemctl isolate multi-user.target
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br></div></div><p>Target 与 传统 RunLevel 的对应关系如下。</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>Traditional runlevel      New target name     Symbolically linked to<span class="token punctuation">..</span>.
+
+Runlevel <span class="token number">0</span>           <span class="token operator">|</span>    runlevel0.target -<span class="token operator">&gt;</span> poweroff.target
+Runlevel <span class="token number">1</span>           <span class="token operator">|</span>    runlevel1.target -<span class="token operator">&gt;</span> rescue.target
+Runlevel <span class="token number">2</span>           <span class="token operator">|</span>    runlevel2.target -<span class="token operator">&gt;</span> multi-user.target
+Runlevel <span class="token number">3</span>           <span class="token operator">|</span>    runlevel3.target -<span class="token operator">&gt;</span> multi-user.target
+Runlevel <span class="token number">4</span>           <span class="token operator">|</span>    runlevel4.target -<span class="token operator">&gt;</span> multi-user.target
+Runlevel <span class="token number">5</span>           <span class="token operator">|</span>    runlevel5.target -<span class="token operator">&gt;</span> graphical.target
+Runlevel <span class="token number">6</span>           <span class="token operator">|</span>    runlevel6.target -<span class="token operator">&gt;</span> reboot.target
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><p>它与 <code>init</code> 进程的主要差别如下。</p> <p><strong>（1）默认的 RunLevel</strong>（在<code>/etc/inittab</code>文件设置）现在被默认的 Target 取代，位置是<code>/etc/systemd/system/default.target</code>，通常符号链接到<code>graphical.target</code>（图形界面）或者<code>multi-user.target</code>（多用户命令行）。</p> <p><strong>（2）启动脚本的位置</strong>，以前是<code>/etc/init.d</code>目录，符号链接到不同的 RunLevel 目录 （比如<code>/etc/rc3.d</code>、<code>/etc/rc5.d</code>等），现在则存放在<code>/lib/systemd/system</code>和<code>/etc/systemd/system</code>目录。</p> <p><strong>（3）配置文件的位置</strong>，以前<code>init</code>进程的配置文件是<code>/etc/inittab</code>，各种服务的配置文件存放在<code>/etc/sysconfig</code>目录。现在的配置文件主要存放在<code>/lib/systemd</code>目录，在<code>/etc/systemd</code>目录里面的修改可以覆盖原始设置。</p> <h2 id="日志管理"><a href="#日志管理" class="header-anchor">#</a> 日志管理</h2> <p>Systemd 统一管理所有 Unit 的启动日志。带来的好处就是，可以只用<code>journalctl</code> 一个命令，查看所有日志（内核日志和应用日志）。日志的配置文件是 <code>/etc/systemd/journald.conf</code> 。</p> <p><code>journalctl</code> 功能强大，用法非常多。</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token comment"># 查看所有日志（默认情况下 ，只保存本次启动的日志）</span>
+<span class="token function">sudo</span> journalctl
+
+<span class="token comment"># 查看内核日志（不显示应用日志）</span>
+<span class="token function">sudo</span> journalctl -k
+
+<span class="token comment"># 查看系统本次启动的日志</span>
+<span class="token function">sudo</span> journalctl -b
+<span class="token function">sudo</span> journalctl -b -0
+
+<span class="token comment"># 查看上一次启动的日志（需更改设置）</span>
+<span class="token function">sudo</span> journalctl -b -1
+
+<span class="token comment"># 查看指定时间的日志</span>
+<span class="token function">sudo</span> journalctl --since<span class="token operator">=</span><span class="token string">&quot;2012-10-30 18:17:16&quot;</span>
+<span class="token function">sudo</span> journalctl --since <span class="token string">&quot;20 min ago&quot;</span>
+<span class="token function">sudo</span> journalctl --since yesterday
+<span class="token function">sudo</span> journalctl --since <span class="token string">&quot;2015-01-10&quot;</span> --until <span class="token string">&quot;2015-01-11 03:00&quot;</span>
+<span class="token function">sudo</span> journalctl --since 09:00 --until <span class="token string">&quot;1 hour ago&quot;</span>
+
+<span class="token comment"># 显示尾部的最新10行日志</span>
+<span class="token function">sudo</span> journalctl -n
+
+<span class="token comment"># 显示尾部指定行数的日志</span>
+<span class="token function">sudo</span> journalctl -n <span class="token number">20</span>
+
+<span class="token comment"># 实时滚动显示最新日志</span>
+<span class="token function">sudo</span> journalctl -f
+
+<span class="token comment"># 查看指定服务的日志</span>
+<span class="token function">sudo</span> journalctl /usr/lib/systemd/systemd
+
+<span class="token comment"># 查看指定进程的日志</span>
+<span class="token function">sudo</span> journalctl <span class="token assign-left variable">_PID</span><span class="token operator">=</span><span class="token number">1</span>
+
+<span class="token comment"># 查看某个路径的脚本的日志</span>
+<span class="token function">sudo</span> journalctl /usr/bin/bash
+
+<span class="token comment"># 查看指定用户的日志</span>
+<span class="token function">sudo</span> journalctl <span class="token assign-left variable">_UID</span><span class="token operator">=</span><span class="token number">33</span> --since today
+
+<span class="token comment"># 查看某个 Unit 的日志</span>
+<span class="token function">sudo</span> journalctl -u nginx.service
+<span class="token function">sudo</span> journalctl -u nginx.service --since today
+
+<span class="token comment"># 实时滚动显示某个 Unit 的最新日志</span>
+<span class="token function">sudo</span> journalctl -u nginx.service -f
+
+<span class="token comment"># 合并显示多个 Unit 的日志</span>
+journalctl -u nginx.service -u php-fpm.service --since today
+
+<span class="token comment"># 查看指定优先级（及其以上级别）的日志，共有8级</span>
+<span class="token comment"># 0: emerg</span>
+<span class="token comment"># 1: alert</span>
+<span class="token comment"># 2: crit</span>
+<span class="token comment"># 3: err</span>
+<span class="token comment"># 4: warning</span>
+<span class="token comment"># 5: notice</span>
+<span class="token comment"># 6: info</span>
+<span class="token comment"># 7: debug</span>
+<span class="token function">sudo</span> journalctl -p err -b
+
+<span class="token comment"># 日志默认分页输出，--no-pager 改为正常的标准输出</span>
+<span class="token function">sudo</span> journalctl --no-pager
+
+<span class="token comment"># 以 JSON 格式（单行）输出</span>
+<span class="token function">sudo</span> journalctl -b -u nginx.service -o json
+
+<span class="token comment"># 以 JSON 格式（多行）输出，可读性更好</span>
+<span class="token function">sudo</span> journalctl -b -u nginx.serviceqq
+ -o json-pretty
+
+<span class="token comment"># 显示日志占据的硬盘空间</span>
+<span class="token function">sudo</span> journalctl --disk-usage
+
+<span class="token comment"># 指定日志文件占据的最大空间</span>
+<span class="token function">sudo</span> journalctl --vacuum-size<span class="token operator">=</span>1G
+
+<span class="token comment"># 指定日志文件保存多久</span>
+<span class="token function">sudo</span> journalctl --vacuum-time<span class="token operator">=</span>1years
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br></div></div><h2 id="参考文章"><a href="#参考文章" class="header-anchor">#</a> 参考文章</h2> <p><a href="http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html" target="_blank" rel="noopener noreferrer">原文：Systemd 入门教程<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p></div> <footer class="page-edit" style="display:none;"><!----> <!----></footer> <!----> <!----> <ul class="side-bar sub-sidebar-wrapper" style="width:12rem;" data-v-40a3448a><li class="level-2" data-v-40a3448a><a href="/blogs/OS/linux/systemd.html#概述" class="sidebar-link" data-v-40a3448a>概述</a></li><li class="level-2" data-v-40a3448a><a href="/blogs/OS/linux/systemd.html#实战" class="sidebar-link" data-v-40a3448a>实战</a></li><li class="level-2" data-v-40a3448a><a href="/blogs/OS/linux/systemd.html#系统管理" class="sidebar-link" data-v-40a3448a>系统管理</a></li><li class="level-3" data-v-40a3448a><a href="/blogs/OS/linux/systemd.html#_1-systemctl" class="sidebar-link" data-v-40a3448a>1. systemctl</a></li><li class="level-3" data-v-40a3448a><a href="/blogs/OS/linux/systemd.html#_2-systemd-analyze" class="sidebar-link" data-v-40a3448a>2. systemd-analyze</a></li><li class="level-3" data-v-40a3448a><a href="/blogs/OS/linux/systemd.html#_3-hostnamectl" class="sidebar-link" data-v-40a3448a>3. hostnamectl</a></li><li class="level-3" data-v-40a3448a><a href="/blogs/OS/linux/systemd.html#_4-localectl" class="sidebar-link" data-v-40a3448a>4. localectl</a></li><li class="level-3" data-v-40a3448a><a href="/blogs/OS/linux/systemd.html#_5-timedatectl" class="sidebar-link" data-v-40a3448a>5. timedatectl</a></li><li class="level-3" data-v-40a3448a><a href="/blogs/OS/linux/systemd.html#_6-loginctl" class="sidebar-link" data-v-40a3448a>6. loginctl</a></li><li class="level-2" data-v-40a3448a><a href="/blogs/OS/linux/systemd.html#unit" class="sidebar-link" data-v-40a3448a>Unit</a></li><li class="level-3" data-v-40a3448a><a href="/blogs/OS/linux/systemd.html#_1-unit-的状态" class="sidebar-link" data-v-40a3448a>1. Unit 的状态</a></li><li class="level-3" data-v-40a3448a><a href="/blogs/OS/linux/systemd.html#_2-unit-管理" class="sidebar-link" data-v-40a3448a>2. Unit 管理</a></li><li class="level-3" data-v-40a3448a><a href="/blogs/OS/linux/systemd.html#_3-依赖关系" class="sidebar-link" data-v-40a3448a>3. 依赖关系</a></li><li class="level-2" data-v-40a3448a><a href="/blogs/OS/linux/systemd.html#unit-的配置文件" class="sidebar-link" data-v-40a3448a>Unit 的配置文件</a></li><li class="level-3" data-v-40a3448a><a href="/blogs/OS/linux/systemd.html#_1-配置文件的状态" class="sidebar-link" data-v-40a3448a>1. 配置文件的状态</a></li><li class="level-3" data-v-40a3448a><a href="/blogs/OS/linux/systemd.html#_2-配置文件的格式" class="sidebar-link" data-v-40a3448a>2. 配置文件的格式</a></li><li class="level-3" data-v-40a3448a><a href="/blogs/OS/linux/systemd.html#_3-配置文件的区块" class="sidebar-link" data-v-40a3448a>3. 配置文件的区块</a></li><li class="level-2" data-v-40a3448a><a href="/blogs/OS/linux/systemd.html#target" class="sidebar-link" data-v-40a3448a>Target</a></li><li class="level-2" data-v-40a3448a><a href="/blogs/OS/linux/systemd.html#日志管理" class="sidebar-link" data-v-40a3448a>日志管理</a></li><li class="level-2" data-v-40a3448a><a href="/blogs/OS/linux/systemd.html#参考文章" class="sidebar-link" data-v-40a3448a>参考文章</a></li></ul></main> <!----></div></div></div></div><div class="global-ui"><div class="back-to-ceiling" style="right:1rem;bottom:6rem;width:2.5rem;height:2.5rem;border-radius:.25rem;line-height:2.5rem;display:none;" data-v-6f76602d data-v-6f76602d><svg t="1574745035067" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5404" class="icon" data-v-6f76602d><path d="M526.60727968 10.90185116a27.675 27.675 0 0 0-29.21455937 0c-131.36607665 82.28402758-218.69155461 228.01873535-218.69155402 394.07834331a462.20625001 462.20625001 0 0 0 5.36959153 69.94390903c1.00431239 6.55289093-0.34802892 13.13561351-3.76865779 18.80351572-32.63518765 54.11355614-51.75690182 118.55860487-51.7569018 187.94566865a371.06718723 371.06718723 0 0 0 11.50484808 91.98906777c6.53300375 25.50556257 41.68394495 28.14064038 52.69160883 4.22606766 17.37162448-37.73630017 42.14135425-72.50938081 72.80769204-103.21549295 2.18761121 3.04276886 4.15646224 6.24463696 6.40373557 9.22774369a1871.4375 1871.4375 0 0 0 140.04691725 5.34970492 1866.36093723 1866.36093723 0 0 0 140.04691723-5.34970492c2.24727335-2.98310674 4.21612437-6.18497483 6.3937923-9.2178004 30.66633723 30.70611158 55.4360664 65.4791928 72.80769147 103.21549355 11.00766384 23.91457269 46.15860503 21.27949489 52.69160879-4.22606768a371.15156223 371.15156223 0 0 0 11.514792-91.99901164c0-69.36717486-19.13165746-133.82216804-51.75690182-187.92578088-3.42062944-5.66790279-4.76302748-12.26056868-3.76865837-18.80351632a462.20625001 462.20625001 0 0 0 5.36959269-69.943909c-0.00994388-166.08943902-87.32547796-311.81420293-218.6915546-394.09823051zM605.93803103 357.87693858a93.93749974 93.93749974 0 1 1-187.89594924 6.1e-7 93.93749974 93.93749974 0 0 1 187.89594924-6.1e-7z" p-id="5405" data-v-6f76602d></path><path d="M429.50777625 765.63860547C429.50777625 803.39355007 466.44236686 1000.39046097 512.00932183 1000.39046097c45.56695499 0 82.4922232-197.00623328 82.5015456-234.7518555 0-37.75494459-36.9345906-68.35043303-82.4922232-68.34111062-45.57627738-0.00932239-82.52019037 30.59548842-82.51086798 68.34111062z" p-id="5406" data-v-6f76602d></path></svg></div></div></div>
+    <script src="/assets/js/app.feb61cd3.js" defer></script><script src="/assets/js/3.445022ba.js" defer></script><script src="/assets/js/1.d2dffd9e.js" defer></script><script src="/assets/js/120.72d39615.js" defer></script>
+  </body>
+</html>
